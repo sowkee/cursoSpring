@@ -46,7 +46,7 @@ public class UsuarioController {
         usuarioDto.setFechaIngreso(new Date());
         usuarioDto.setTelefono(request.get("telefono").toString());
         usuarioDto.setDireccion(request.get("direccion").toString());
-        usuarioDto.setPassword(request.get("password").toString());
+
 
         String respuesta = this.usuarioNegocio.guardarUsuario(usuarioDto);
 

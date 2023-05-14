@@ -43,7 +43,7 @@ public class VentaController {
 
         ventaDto.setIdVenta(0);
         ventaDto.setFechaVenta(new Date());
-        ventaDto.setPrecioFinal(Integer.parseInt(request.get("precio").toString()));
+        ventaDto.setPrecioFinal(Integer.parseInt(request.get("precioFinal").toString()));
         ventaDto.setObservaciones(request.get("observaciones").toString());
 
         String respuesta = this.ventaNegocio.guardarVenta(ventaDto);
