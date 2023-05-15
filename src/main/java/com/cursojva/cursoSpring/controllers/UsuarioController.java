@@ -62,7 +62,7 @@ public class UsuarioController {
     public ResponseEntity<Map<String, Object>> actualizarUsuario(@RequestBody Map<String, Object> request) {
         Map<String, Object> res = new HashMap<String, Object>();
         UsuarioDto usuarioDto = new UsuarioDto();
-        usuarioDto.setIdUsuario(Integer.parseInt(request.get("id").toString()));
+        usuarioDto.setIdUsuario(Integer.parseInt(request.get("idUsuario").toString()));
         usuarioDto.setNombre(request.get("nombre").toString());
         usuarioDto.setApellido(request.get("apellido").toString());
         usuarioDto.setCorreo(request.get("correo").toString());
@@ -71,7 +71,6 @@ public class UsuarioController {
         usuarioDto.setFechaIngreso(new Date());
         usuarioDto.setTelefono(request.get("telefono").toString());
         usuarioDto.setDireccion(request.get("direccion").toString());
-        usuarioDto.setPassword(request.get("password").toString());
 
         String respuesta = this.usuarioNegocio.guardarUsuario(usuarioDto);
 
@@ -95,43 +94,3 @@ public class UsuarioController {
     }
 
 }
-    /*@Autowired
-    private JWTUtil jwtUtil;
-
-    @RequestMapping(value = "api/usuarios", method = RequestMethod.GET)
-    public List<Usuario> getUsuarios(@RequestHeader (value = "Authorization") String token){
-
-        if(!validarToken(token)) {
-            return null;
-        }
-
-        return usuarioDAO.getUsuario();
-    }
-
-    public boolean validarToken(String token) {
-        String usuarioId = jwtUtil.getKey(token);
-        return usuarioId != null;
-    }
-
-    @RequestMapping(value = "api/usuarios", method = RequestMethod.POST)
-    public void registrarUsuarios(@RequestBody Usuario usuario){
-
-        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        String hash = argon2.hash(1, 1024, 1, usuario.getPassword());
-        usuario.setPassword(hash);
-        usuarioDAO.registrar(usuario);
-    }
-
-    @RequestMapping(value = "api/usuarios/{id}", method = RequestMethod.DELETE)
-    public void eliminar(@RequestHeader (value = "Authorization") String token,
-                         @PathVariable Long id){
-        if(!validarToken(token)) {
-            return;
-        }
-        usuarioDAO.eliminar(id);
-
-    }
-
-     */
-
-

@@ -23,9 +23,9 @@ public class UsuarioImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario encontrarPorId(int id) {
+    public Usuario encontrarPorId(int idUsuario) {
 
-        return this.usuarioRepository.encontrarPorId(id);
+        return this.usuarioRepository.encontrarPorId(idUsuario);
     }
 
     @Override

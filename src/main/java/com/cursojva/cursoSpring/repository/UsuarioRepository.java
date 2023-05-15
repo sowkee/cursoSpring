@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
-    @Query(value = "SELECT u FROM Usuario u WHERE u.id=id")
-    public Usuario encontrarPorId(int id);
+    @Query(value = "SELECT u FROM Usuario u WHERE u.id=idUsuario")
+    public Usuario encontrarPorId(int idUsuario);
 
 }
