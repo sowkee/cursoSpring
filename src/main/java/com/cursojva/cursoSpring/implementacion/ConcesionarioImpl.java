@@ -40,7 +40,9 @@ public class ConcesionarioImpl implements ConcesionarioService {
 
     @Override
     public void eliminarConcesionario(int id) {
-        Concesionario concesionario = this.concesionarioRepository.encontrarPorId(id);
+        System.out.println("#####" + id);
+        Concesionario concesionario = this.concesionarioRepository.getById(id);
+        System.out.println("@@@@@" + concesionario.toString());
         if(concesionario != null) {
             this.concesionarioRepository.delete(concesionario);
         }

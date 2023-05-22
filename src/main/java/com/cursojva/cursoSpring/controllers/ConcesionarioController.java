@@ -55,7 +55,7 @@ public class ConcesionarioController {
     public ResponseEntity<Map<String, Object>> actualizarConcesionario(@RequestBody Map<String, Object> request) {
         Map<String, Object> res = new HashMap<String, Object>();
         ConcesionarioDto concesionarioDto = new ConcesionarioDto();
-        concesionarioDto.setIdConcesionario(Integer.parseInt(request.get("id").toString()));
+        concesionarioDto.setIdConcesionario(Integer.parseInt(request.get("idConcesionario").toString()));
         concesionarioDto.setNombre(request.get("nombre").toString());
         concesionarioDto.setCorreo(request.get("correo").toString());
         concesionarioDto.setTelefono(request.get("telefono").toString());
@@ -66,6 +66,18 @@ public class ConcesionarioController {
         res.put("status", HttpStatus.ACCEPTED);
         res.put("data", respuesta);
 
+
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/delete/{id}")
+    public ResponseEntity<Map<String, Object>> eliminarConcesionario (@PathVariable int id) {
+        Map<String, Object> res = new HashMap<>();
+
+        String respuesta = this.concesionarioNegocio.eliminar(id);
+
+        res.put("status" , HttpStatus.CREATED);
+        res.put("data", respuesta);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }

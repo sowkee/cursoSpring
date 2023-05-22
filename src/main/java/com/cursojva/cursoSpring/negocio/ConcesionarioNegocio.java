@@ -62,4 +62,15 @@ public class ConcesionarioNegocio {
             return "BAD";
         }
     }
+
+    public String eliminar (int id) {
+        Concesionario concesionario;
+        try{
+            this.concesionarioImpl.eliminarConcesionario(id);
+            return "OK";
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "BAD";
+        }
+    }
 }

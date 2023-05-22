@@ -45,7 +45,7 @@ public class VehiculoNegocio {
                  vehiculo.setModelo(vehiculoDto.getModelo());
                  vehiculo.setColor(vehiculoDto.getColor());
                  vehiculo.setPrecio(vehiculoDto.getPrecio());
-                 this.vehiculoImpl.actualizarUsuario(vehiculo);
+                 this.vehiculoImpl.actualizarVehiculo(vehiculo);
              }else {
 
                  vehiculo.setKilometraje(vehiculoDto.getKilometraje());
@@ -54,12 +54,23 @@ public class VehiculoNegocio {
                  vehiculo.setModelo(vehiculoDto.getModelo());
                  vehiculo.setColor(vehiculoDto.getColor());
                  vehiculo.setPrecio(vehiculoDto.getPrecio());
-                 this.vehiculoImpl.crearUsuario(vehiculo);
+                 this.vehiculoImpl.crearVehiculo(vehiculo);
              }
              return "OK.";
          }catch (Exception e) {
              return "BAD.";
          }
 
+    }
+
+    public String eliminar(int id) {
+        Vehiculo vehiculo;
+        try {
+            this.vehiculoImpl.eliminarVehiculo(id);
+            return "OK";
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "BAD";
+        }
     }
 }

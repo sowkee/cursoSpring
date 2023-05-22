@@ -72,15 +72,15 @@ public class UsuarioNegocio {
         }
     }
     public String eliminar (int id) {
-        Usuario usuario = new Usuario();
+        Usuario usuario;
         try {
-            usuario = this.usuarioImpl.encontrarPorId(id);
             this.usuarioImpl.eliminarUsuario(id);
             return "OK";
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
+            return "BAD";
         }
-        return null;
+
     }
 
 }

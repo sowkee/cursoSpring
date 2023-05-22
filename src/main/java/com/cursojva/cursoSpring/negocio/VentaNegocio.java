@@ -1,8 +1,6 @@
 package com.cursojva.cursoSpring.negocio;
 
-import com.cursojva.cursoSpring.dto.UsuarioDto;
 import com.cursojva.cursoSpring.dto.VentaDto;
-import com.cursojva.cursoSpring.entities.Usuario;
 import com.cursojva.cursoSpring.entities.Venta;
 import com.cursojva.cursoSpring.implementacion.VentaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,17 +44,28 @@ public class VentaNegocio {
                 venta.setObservaciones(ventaDto.getObservaciones());
                 venta.setVehiculos(ventaDto.getVehiculos());
                 venta.setUsuarios(ventaDto.getUsuarios());
-                this.ventaImpl.actualizarUsuario(venta);
+                this.ventaImpl.actualizarVenta(venta);
             } else {
                 venta.setFechaVenta(ventaDto.getFechaVenta());
                 venta.setPrecioFinal(ventaDto.getPrecioFinal());
                 venta.setObservaciones(ventaDto.getObservaciones());
                 venta.setVehiculos(ventaDto.getVehiculos());
                 venta.setUsuarios(ventaDto.getUsuarios());
-                this.ventaImpl.crearUsuario(venta);
+                this.ventaImpl.crearVenta(venta);
             }
             return "OK";
         }catch (Exception e){
+            return "BAD";
+        }
+    }
+
+    public String eliminar(int id) {
+        Venta venta;
+        try {
+            this.ventaImpl.eliminarVenta(id);
+            return "OK";
+        }catch (Exception e) {
+            e.printStackTrace();
             return "BAD";
         }
     }

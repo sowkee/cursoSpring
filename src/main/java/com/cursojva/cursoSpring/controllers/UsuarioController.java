@@ -37,21 +37,27 @@ public class UsuarioController {
         System.out.println("@@@@@"+request.toString());
         UsuarioDto usuarioDto = new UsuarioDto();
 
-        usuarioDto.setIdUsuario(0);
-        usuarioDto.setNombre(request.get("nombre").toString());
-        usuarioDto.setApellido(request.get("apellido").toString());
-        usuarioDto.setCorreo(request.get("correo").toString());
-        usuarioDto.setIdentificacion(Integer.parseInt(request.get("identificacion").toString()));
-        usuarioDto.setFechaNacimiento(new Date());
-        usuarioDto.setFechaIngreso(new Date());
-        usuarioDto.setTelefono(request.get("telefono").toString());
-        usuarioDto.setDireccion(request.get("direccion").toString());
+        try{
+            usuarioDto.setIdUsuario(0);
+            usuarioDto.setNombre(request.get("nombre").toString());
+            usuarioDto.setApellido(request.get("apellido").toString());
+            usuarioDto.setCorreo(request.get("correo").toString());
+            usuarioDto.setIdentificacion(Integer.parseInt(request.get("identificacion").toString()));
+            usuarioDto.setFechaNacimiento(new Date());
+            usuarioDto.setFechaIngreso(new Date());
+            usuarioDto.setTelefono(request.get("telefono").toString());
+            usuarioDto.setDireccion(request.get("direccion").toString());
 
 
-        String respuesta = this.usuarioNegocio.guardarUsuario(usuarioDto);
+            String respuesta = this.usuarioNegocio.guardarUsuario(usuarioDto);
 
-        res.put("status", HttpStatus.CREATED);
-        res.put("data", respuesta);
+            res.put("status", HttpStatus.CREATED);
+            res.put("code", HttpStatus.values());
+            res.put("data", respuesta);
+        }catch (Exception e) {
+            res.put("status", HttpStatus.INTERNAL_SERVER_ERROR);
+            res.put("data", e.getMessage());
+        }
 
 
         return new ResponseEntity<>(res, HttpStatus.OK);
@@ -84,6 +90,7 @@ public class UsuarioController {
     @GetMapping("/delete/{id}")
     public ResponseEntity<Map<String, Object>> eliminarUsuario(@PathVariable int id){
         Map<String, Object> res = new HashMap<>();
+
         String respuesta = this.usuarioNegocio.eliminar(id);
 
         res.put("status", HttpStatus.CREATED);

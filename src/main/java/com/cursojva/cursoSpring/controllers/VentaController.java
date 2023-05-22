@@ -61,9 +61,9 @@ public class VentaController {
         Map<String, Object> res = new HashMap<String, Object>();
 
         VentaDto ventaDto = new VentaDto();
-        ventaDto.setIdVenta(Integer.parseInt(request.get("id").toString()));
+        ventaDto.setIdVenta(Integer.parseInt(request.get("idVenta").toString()));
         ventaDto.setFechaVenta(new Date());
-        ventaDto.setPrecioFinal(Integer.parseInt(request.get("precio").toString()));
+        ventaDto.setPrecioFinal(Integer.parseInt(request.get("precioFinal").toString()));
         ventaDto.setObservaciones(request.get("observaciones").toString());
 
         String respuesta = this.ventaNegocio.guardarVenta(ventaDto);
@@ -71,6 +71,18 @@ public class VentaController {
         res.put("status", HttpStatus.CREATED);
         res.put("data", respuesta);
 
+
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/delete/{id}")
+    public ResponseEntity<Map<String, Object>> eliminarVenta (@PathVariable int id) {
+        Map<String, Object> res = new HashMap<>();
+
+        String respuesta = this.ventaNegocio.eliminar(id);
+
+        res.put("status", HttpStatus.CREATED);
+        res.put("data", respuesta);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }

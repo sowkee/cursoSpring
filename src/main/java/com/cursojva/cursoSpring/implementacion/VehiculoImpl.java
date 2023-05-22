@@ -25,17 +25,22 @@ public class VehiculoImpl implements VehiculoService {
     }
 
     @Override
-    public void crearUsuario(Vehiculo vehiculo) {
+    public void crearVehiculo(Vehiculo vehiculo) {
         this.vehiculoRepository.save(vehiculo);
     }
 
     @Override
-    public void actualizarUsuario(Vehiculo vehiculo) {
+    public void actualizarVehiculo(Vehiculo vehiculo) {
         this.vehiculoRepository.save(vehiculo);
     }
 
     @Override
-    public void eliminarUsuario(int id) {
-
+    public void eliminarVehiculo(int id) {
+        System.out.println("#####" + id);
+        Vehiculo vehiculo = this.vehiculoRepository.getById(id);
+        System.out.println("@@@@" + vehiculo.toString());
+        if(vehiculo != null) {
+            this.vehiculoRepository.delete(vehiculo);
+        }
     }
 }

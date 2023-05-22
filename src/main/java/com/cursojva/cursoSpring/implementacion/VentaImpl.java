@@ -28,19 +28,27 @@ public class VentaImpl implements VentaService {
     }
 
     @Override
-    public void crearUsuario(Venta venta) {
+    public void crearVenta(Venta venta) {
 
         this.ventaRepository.save(venta);
     }
 
     @Override
-    public void actualizarUsuario(Venta venta) {
+    public void actualizarVenta(Venta venta) {
 
         this.ventaRepository.save(venta);
     }
 
     @Override
-    public void eliminarUsuario(int id) {
+    public void eliminarVenta(int id) {
+        System.out.println("####" + id);
+        Venta venta = this.ventaRepository.getById(id);
+        System.out.println("@@@@" + venta.toString());
+
+        if(venta != null) {
+            this.ventaRepository.delete(venta);
+        }
+
 
     }
 }
